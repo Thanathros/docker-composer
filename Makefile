@@ -1,13 +1,14 @@
 LATEST_COMPOSER = 1.9.0
 COMPOSER_BRANCHES = 1.8.6 1.9.0
 PHP_VERSIONS = 7.1 7.2 7.3
+REPO_NAME = "pimlab/composer"
 
 COMPOSER_INSTALLER_URL ?= https://raw.githubusercontent.com/composer/getcomposer.org/cb19f2aa3aeaa2006c0cd69a7ef011eb31463067/web/installer
 COMPOSER_INSTALLER_HASH ?= 48e3236262b34d30969dca3c37281b3b4bbe3221bda826ac6a9a62d6444cdb0dcd0615698a5cbe587c3f0fe57a54d8f5
 
 .PHONY = all build test template
 
-all: template build test
+all: template build test tag
 
 build:
 	@for branch in $(COMPOSER_BRANCHES); do \
@@ -30,6 +31,22 @@ test:
 	        else \
 	            echo "Test Composer $$branch for PHP $$php"; \
 	            docker run --rm --tty composer:$$branch-php$$php --no-ansi | grep "Composer version $$branch"; \
+	        fi \
+	    done \
+	done \
+
+tag:
+	@for branch in $(COMPOSER_BRANCHES); do \
+	    for php in $(PHP_VERSIONS); do \
+	        dir=$$branch/php$$php; \
+	        if [ $$branch = $(LATEST_COMPOSER) ]; then \
+	            docker tag composer:$$branch-php$$php $(REPO_NAME):$$branch-php$$php; \
+	            docker push $(REPO_NAME):$$branch-php$$php; \
+	            docker tag composer:latest-php$$php $(REPO_NAME):latest-php$$php; \
+	            docker push $(REPO_NAME):latest-php$$php; \
+	        else \
+	            docker tag composer:$$branch-php$$php $(REPO_NAME):$$branch-php$$php; \
+	            docker push $(REPO_NAME):$$branch-php$$php; \
 	        fi \
 	    done \
 	done \
