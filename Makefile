@@ -7,7 +7,7 @@ COMPOSER_INSTALLER_HASH ?= 48e3236262b34d30969dca3c37281b3b4bbe3221bda826ac6a9a6
 
 .PHONY = all build test template
 
-all: build test
+all: template build test
 
 build:
 	@for branch in $(COMPOSER_BRANCHES); do \
@@ -36,6 +36,7 @@ test:
 
 template:
 	@for branch in $(COMPOSER_BRANCHES); do \
+	    rm -R ./$$branch; \
 	    for php in $(PHP_VERSIONS); do \
 	        echo "Create Dockerfile for Composer $$branch with PHP $$php"; \
 	        dir=$$branch/php$$php; \
