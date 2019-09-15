@@ -21,8 +21,10 @@ RUN set -eux; \
     libpng-dev \
   ; \
   docker-php-ext-install -j "$(nproc)" \
+    opcache \
     zip \
     gd \
+    exif \
   ; \
   runDeps="$( \
     scanelf --needed --nobanner --format '%n#p' --recursive /usr/local/lib/php/extensions \
@@ -36,6 +38,7 @@ RUN set -eux; \
 RUN printf "# composer php cli ini settings\n\
 date.timezone=UTC\n\
 memory_limit=-1\n\
+opcache.enable_cli=1\n\
 " > $PHP_INI_DIR/php-cli.ini
 
 ENV COMPOSER_ALLOW_SUPERUSER 1
