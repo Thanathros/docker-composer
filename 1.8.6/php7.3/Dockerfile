@@ -19,12 +19,29 @@ RUN set -eux; \
     libzip-dev \
     zlib-dev \
     libpng-dev \
+    icu-dev \
+    gettext-dev \
+    libsodium-dev \
   ; \
   docker-php-ext-install -j "$(nproc)" \
     opcache \
     zip \
     gd \
     exif \
+    intl \
+    gettext \
+    mysqli \
+    pdo_mysql \
+  ; \
+  docker-php-ext-enable \
+    opcache \
+    zip \
+    gd \
+    exif \
+    intl \
+    gettext \
+    mysqli \
+    pdo_mysql \
   ; \
   runDeps="$( \
     scanelf --needed --nobanner --format '%n#p' --recursive /usr/local/lib/php/extensions \
