@@ -1,6 +1,6 @@
-LATEST_COMPOSER = 1.9.1
-COMPOSER_BRANCHES = 1.8.6 1.9.0 1.9.1
-PHP_VERSIONS = 7.1 7.2 7.3
+LATEST_COMPOSER = 1.9.2
+COMPOSER_BRANCHES = 1.9.1 1.9.2
+PHP_VERSIONS = 7.1 7.2 7.3 7.4
 REPO_NAME = "pimlab/composer"
 
 COMPOSER_INSTALLER_URL ?= https://raw.githubusercontent.com/composer/getcomposer.org/cb19f2aa3aeaa2006c0cd69a7ef011eb31463067/web/installer

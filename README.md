@@ -4,13 +4,11 @@ This is used to run latest and previous Version of Composer with different PHP V
 
 ## Tags
 
-| Composer | PHP 7.1 | PHP 7.2 | PHP 7.3 |
-|----------|------------------------|------------------------|------------------------|
-| latest | pimlab/composer:latest-php7.1 | pimlab/composer:latest-php7.2 | pimlab/composer:latest-php7.3 |
-| 1.9.1 | pimlab/composer:1.9.1-php7.1 | pimlab/composer:1.9.1-php7.2 | pimlab/composer:1.9.1-php7.3 |
-| 1.9.0 | pimlab/composer:1.9.0-php7.1 | pimlab/composer:1.9.0-php7.2 | pimlab/composer:1.9.0-php7.3 |
-| 1.8.6 | pimlab/composer:1.8.6-php7.1 | pimlab/composer:1.8.6-php7.2 | pimlab/composer:1.8.6-php7.3 |
-
+| Composer | PHP 7.1 | PHP 7.2 | PHP 7.3 | PHP 7.4 |
+|----------|------------------------|------------------------|------------------------|------------------------|
+| latest | pimlab/composer:latest-php7.1 | pimlab/composer:latest-php7.2 | pimlab/composer:latest-php7.3 | pimlab/composer:latest-php7.4 |
+| 1.9.2 | pimlab/composer:1.9.2-php7.1 | pimlab/composer:1.9.2-php7.2 | pimlab/composer:1.9.2-php7.3 | pimlab/composer:1.9.2-php7.4 |
+| 1.9.1 | pimlab/composer:1.9.1-php7.1 | pimlab/composer:1.9.1-php7.2 | pimlab/composer:1.9.1-php7.3 | pimlab/composer:1.9.1-php7.4 |
 
 ## How to Update
 
