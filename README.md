@@ -6,9 +6,12 @@ This is used to run latest and previous Version of Composer with different PHP V
 
 | Composer | PHP 7.2 | PHP 7.3 | PHP 7.4 |
 |----------|------------------------|------------------------|------------------------|
+| 2.0.0-alpha1 | pimlab/composer:2.0.0-alpha1-php7.2 | pimlab/composer:2.0.0-alpha1-php7.3 | pimlab/composer:2.0.0-alpha1-php7.4 |
 | latest | pimlab/composer:latest-php7.2 | pimlab/composer:latest-php7.3 | pimlab/composer:latest-php7.4 |
-| 1.10.6 | pimlab/composer:1.10.6-php7.2 | pimlab/composer:1.10.6-php7.3 | pimlab/composer:1.10.6-php7.4 |
+| 1.10.7 | pimlab/composer:1.10.7-php7.2 | pimlab/composer:1.10.7-php7.3 | pimlab/composer:1.10.7-php7.4 |
 | 1.9.3 | pimlab/composer:1.9.3-php7.2 | pimlab/composer:1.9.3-php7.3 | pimlab/composer:1.9.3-php7.4 |
+
+**NOTICE:** latest composer is version 1.x.x until first composer 2.x.x stable will released!
 
 ## How to Update
 
