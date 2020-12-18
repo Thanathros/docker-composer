@@ -8,11 +8,11 @@ RUN docker-php-source extract
     ## https://olvlvl.com/2019-06-docker-pecl-without-pecl
     ## igbinary
 RUN mkdir -p /usr/src/php/ext/igbinary \
-    && curl -fsSL https://github.com/igbinary/igbinary/archive/3.0.1.tar.gz | tar xvz -C /usr/src/php/ext/igbinary --strip 1 \
+    && curl -fsSL https://github.com/igbinary/igbinary/archive/%IGBINARY_VERSION%.tar.gz | tar xvz -C /usr/src/php/ext/igbinary --strip 1 \
     && docker-php-ext-install igbinary \
     ## redis
     && mkdir -p /usr/src/php/ext/redis \
-    && curl -fsSL https://github.com/phpredis/phpredis/archive/4.3.0.tar.gz | tar xvz -C /usr/src/php/ext/redis --strip 1 \
+    && curl -fsSL https://github.com/phpredis/phpredis/archive/%REDIS_VERSION%.tar.gz | tar xvz -C /usr/src/php/ext/redis --strip 1 \
     && docker-php-ext-configure redis --enable-redis-igbinary
 
 RUN set -eux; \

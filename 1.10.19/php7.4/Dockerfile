@@ -3,7 +3,7 @@ FROM php:7.4-alpine
 RUN docker-php-source extract
 
 
-    ## Method to acquire igbinary and redis as used here:
+    ## Method to acquire igbinary andredis as used here:
     ## Thanks Olivier Laviale!
     ## https://olvlvl.com/2019-06-docker-pecl-without-pecl
     ## igbinary
