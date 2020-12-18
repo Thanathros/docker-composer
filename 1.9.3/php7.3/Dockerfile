@@ -2,7 +2,6 @@ FROM php:7.3-alpine
 
 RUN docker-php-source extract
 
-
     ## Method to acquire igbinary andredis as used here:
     ## Thanks Olivier Laviale!
     ## https://olvlvl.com/2019-06-docker-pecl-without-pecl

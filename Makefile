@@ -1,8 +1,8 @@
 LATEST_COMPOSER = 2.0.8
 COMPOSER_BRANCHES = 1.9.3 1.10.19 2.0.8
 PHP_VERSIONS = 7.2 7.3 7.4
-REDIS_VERISON = 4.3.0
-IGBINARY_VERSION = 3.0.1 
+REDIS_VERSION = 4.3.0
+IGBIN_VERSION = 3.0.1
 REPO_NAME = "docker-composer"
 REPO_OWNER = "thanathros"
 REPO_FULL = "$(REPO_OWNER)/$(REPO_NAME)"
@@ -65,10 +65,10 @@ template:
 	        cp docker-entrypoint.sh $$dir; \
 	        cp Dockerfile.template $$dir/Dockerfile; \
 	        gsed -i --expression 's@%PHP_VERSION%@'$$php'@' \
-	           --expression 's@%COMPOSER_VERSION%@'$$branch'@' \
+	             --expression 's@%COMPOSER_VERSION%@'$$branch'@' \
                --expression 's@%COMPOSER_INSTALLER_URL%@$(COMPOSER_INSTALLER_URL)@' \
                --expression 's@%COMPOSER_INSTALLER_HASH%@$(COMPOSER_INSTALLER_HASH)@' \
-               --expression 's@%IGBINARY_VERSION%@$(IGBINARY_VERSION)@' \
+               --expression 's@%IGBINARY_VERSION%@$(IGBIN_VERSION)@' \
                --expression 's@%REDIS_VERSION%@$(REDIS_VERSION)@' \
   	$$dir/Dockerfile; \
 	    done \
