@@ -1,5 +1,20 @@
 FROM php:7.4-alpine
 
+RUN docker-php-source extract
+
+
+    ## Method to acquire igbinary and redis as used here:
+    ## Thanks Olivier Laviale!
+    ## https://olvlvl.com/2019-06-docker-pecl-without-pecl
+    ## igbinary
+RUN mkdir -p /usr/src/php/ext/igbinary \
+    && curl -fsSL https://github.com/igbinary/igbinary/archive/3.0.1.tar.gz | tar xvz -C /usr/src/php/ext/igbinary --strip 1 \
+    && docker-php-ext-install igbinary \
+    ## redis
+    && mkdir -p /usr/src/php/ext/redis \
+    && curl -fsSL https://github.com/phpredis/phpredis/archive/4.3.0.tar.gz | tar xvz -C /usr/src/php/ext/redis --strip 1 \
+    && docker-php-ext-configure redis --enable-redis-igbinary
+
 RUN set -eux; \
   apk add --no-cache --virtual .composer-rundeps \
     bash \
@@ -24,6 +39,8 @@ RUN set -eux; \
     libsodium-dev \
     bzip2-dev \
   ; \
+  docker-php-ext-configure redis --enable-redis-igbinary \
+  ; \
   docker-php-ext-install -j "$(nproc)" \
     opcache \
     zip \
@@ -34,6 +51,7 @@ RUN set -eux; \
     mysqli \
     pdo_mysql \
     bz2 \
+    redis \
   ; \
   docker-php-ext-enable \
     opcache \
@@ -45,6 +63,7 @@ RUN set -eux; \
     mysqli \
     pdo_mysql \
     bz2 \
+    redis \
   ; \
   runDeps="$( \
     scanelf --needed --nobanner --format '%n#p' --recursive /usr/local/lib/php/extensions \
@@ -63,12 +82,12 @@ opcache.enable_cli=1\n\
 
 ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_HOME /tmp
-ENV COMPOSER_VERSION 2.0.0-alpha1
+ENV COMPOSER_VERSION 2.0.8
 
 RUN set -eux; \
-  curl --silent --fail --location --retry 3 --output /tmp/installer.php --url https://raw.githubusercontent.com/composer/getcomposer.org/cb19f2aa3aeaa2006c0cd69a7ef011eb31463067/web/installer; \
+  curl --silent --fail --location --retry 3 --output /tmp/installer.php --url https://raw.githubusercontent.com/composer/getcomposer.org/e3e43bde99447de1c13da5d1027545be81736b27/web/installer ; \
   php -r " \
-    \$signature = '48e3236262b34d30969dca3c37281b3b4bbe3221bda826ac6a9a62d6444cdb0dcd0615698a5cbe587c3f0fe57a54d8f5'; \
+    \$signature = '756890a4488ce9024fc62c56153228907f1545c228516cbf63f885e036d37e9a59d27d63f46af1d4d07ee0f76181c7d3'; \
     \$hash = hash('sha384', file_get_contents('/tmp/installer.php')); \
     if (!hash_equals(\$signature, \$hash)) { \
       unlink('/tmp/installer.php'); \

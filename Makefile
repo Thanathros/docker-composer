@@ -1,10 +1,10 @@
-LATEST_COMPOSER = 1.10.7
-COMPOSER_BRANCHES = 1.9.3 1.10.7 2.0.0-alpha1
+LATEST_COMPOSER = 2.0.8
+COMPOSER_BRANCHES = 1.9.3 1.10.19 2.0.8
 PHP_VERSIONS = 7.2 7.3 7.4
-REPO_NAME = "pimlab/composer"
+REPO_NAME = "Thanathros/composer"
 
-COMPOSER_INSTALLER_URL ?= https://raw.githubusercontent.com/composer/getcomposer.org/cb19f2aa3aeaa2006c0cd69a7ef011eb31463067/web/installer
-COMPOSER_INSTALLER_HASH ?= 48e3236262b34d30969dca3c37281b3b4bbe3221bda826ac6a9a62d6444cdb0dcd0615698a5cbe587c3f0fe57a54d8f5
+COMPOSER_INSTALLER_URL ?= https://raw.githubusercontent.com/composer/getcomposer.org/e3e43bde99447de1c13da5d1027545be81736b27/web/installer 
+COMPOSER_INSTALLER_HASH ?= 756890a4488ce9024fc62c56153228907f1545c228516cbf63f885e036d37e9a59d27d63f46af1d4d07ee0f76181c7d3
 
 .PHONY = all build test template
 
@@ -60,8 +60,8 @@ template:
 	        mkdir -p $$dir; \
 	        cp docker-entrypoint.sh $$dir; \
 	        cp Dockerfile.template $$dir/Dockerfile; \
-	        sed -i --expression 's@%PHP_VERSION%@'$$php'@' \
-	           --expression 's@%COMPOSER_VERSION%@'$$branch'@' \
+	        gsed -i --expression 's@%PHP_VERSION%@'$$php'@' \
+	             --expression 's@%COMPOSER_VERSION%@'$$branch'@' \
                --expression 's@%COMPOSER_INSTALLER_URL%@$(COMPOSER_INSTALLER_URL)@' \
                --expression 's@%COMPOSER_INSTALLER_HASH%@$(COMPOSER_INSTALLER_HASH)@' \
                $$dir/Dockerfile; \
