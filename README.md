@@ -1,17 +1,16 @@
 # Composer Docker with PHP
 
 This is used to run latest and previous Version of Composer with different PHP Versions.
+Script has been modified to be used on MacOSX. See `Notes` at the end of README.md
 
 ## Tags
 
 | Composer | PHP 7.2 | PHP 7.3 | PHP 7.4 |
 |----------|------------------------|------------------------|------------------------|
-| 2.0.0-alpha1 | pimlab/composer:2.0.0-alpha1-php7.2 | pimlab/composer:2.0.0-alpha1-php7.3 | pimlab/composer:2.0.0-alpha1-php7.4 |
-| latest | pimlab/composer:latest-php7.2 | pimlab/composer:latest-php7.3 | pimlab/composer:latest-php7.4 |
-| 1.10.7 | pimlab/composer:1.10.7-php7.2 | pimlab/composer:1.10.7-php7.3 | pimlab/composer:1.10.7-php7.4 |
-| 1.9.3 | pimlab/composer:1.9.3-php7.2 | pimlab/composer:1.9.3-php7.3 | pimlab/composer:1.9.3-php7.4 |
-
-**NOTICE:** latest composer is version 1.x.x until first composer 2.x.x stable will released!
+| latest (2.0.8) | thanathros/composer:latest-php7.2 | thanathros/composer:latest-php7.3 | thanathros/composer:latest-php7.4 |
+| 2.0.8 | thanathros/composer:2.0.8-php7.2 | thanathros/composer:2.0.8-php7.3 | thanathros/composer:2.0.8-php7.4 |
+| 1.10.19 | thanathros/composer:1.10.19-php7.2 | thanathros/composer:1.10.19-php7.3 | thanathros/composer:1.10.19-php7.4 |
+| 1.9.3 | thanathros/composer:1.9.3-php7.2 | thanathros/composer:1.9.3-php7.3 | thanathros/composer:1.9.3-php7.4 |
 
 ## How to Update
 
@@ -64,6 +63,11 @@ COMPOSER_INSTALLER_URL ?= https://raw.github...
 | make template | Removes all directories which created by Composer include subdirectories and recreated all needed Dockerfiles new. If you remove a Composer Version, you may have to delete the comparing Directory manually.  |
 | make build | Runs docker build for every Composer Version with all PHP Versions to build the Docker Images |
 | make test | Test all created Docker-Images by running the Docker Image created before |
+
+## Notes
+| Short Note | Meaning / Description |  
+|------------|-----------------------|
+| gsed instead of sed | sed on MacOSX is not GNU-compliant. Therefore make all fails on usage. To circumvent this issue, you have to install gsed; it's available with `brew install gsed` for MacOSX users. Alternatively create a symlink from sed to gsed: `cd /bin && ln -s sed gesd`. |  
 
 ## Sources
 
